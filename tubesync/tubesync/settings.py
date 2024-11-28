@@ -135,8 +135,8 @@ HEALTHCHECK_ALLOWED_IPS = ('127.0.0.1',)
 MAX_ATTEMPTS = 15                           # Number of times tasks will be retried
 MAX_RUN_TIME = 1800                         # Maximum amount of time in seconds a task can run
 BACKGROUND_TASK_RUN_ASYNC = True            # Run tasks async in the background
-BACKGROUND_TASK_ASYNC_THREADS = 1           # Number of async tasks to run at once
-MAX_BACKGROUND_TASK_ASYNC_THREADS = 8       # For sanity reasons
+BACKGROUND_TASK_ASYNC_THREADS = 8           # Number of async tasks to run at once
+MAX_BACKGROUND_TASK_ASYNC_THREADS = 16       # For sanity reasons
 BACKGROUND_TASK_PRIORITY_ORDERING = 'ASC'   # Use 'niceness' task priority ordering
 COMPLETED_TASKS_DAYS_TO_KEEP = 7            # Number of days to keep completed tasks
 MAX_ENTRIES_PROCESSING = 0                  # Number of videos to process on source refresh (0 for no limit)
@@ -160,13 +160,13 @@ YOUTUBE_DEFAULTS = {
     'no_color': True,       # Do not use colours in output
     'age_limit': 99,        # 'Age in years' to spoof
     'ignoreerrors': True,   # Skip on errors (such as unavailable videos in playlists)
-    'cachedir': False,      # Disable on-disk caching
+    'cachedir': True,      # Disable on-disk caching
     'addmetadata': True,    # Embed metadata during postprocessing where available
 }
 COOKIES_FILE = CONFIG_BASE_DIR / 'cookies.txt'
 
 
-MEDIA_FORMATSTR_DEFAULT = '{yyyy_mm_dd}_{source}_{title}_{key}_{format}.{ext}'
+MEDIA_FORMATSTR_DEFAULT = '{source}_{title}_{dd}_{mm}_{yyyy}_{format}.{ext}'
 
 
 try:
