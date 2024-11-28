@@ -4,10 +4,10 @@ import multiprocessing
 
 def get_num_workers():
     # Sane max workers to allow to be spawned
-    cpu_workers = multiprocessing.cpu_count() * 2 + 1
-    # But default to 3
+    cpu_workers = multiprocessing.cpu_count() * 3 + 1
+    # But default to 9
     try:
-        num_workers = int(os.getenv('GUNICORN_WORKERS', 3))
+        num_workers = int(os.getenv('GUNICORN_WORKERS', 9))
     except ValueError:
         num_workers = cpu_workers
     if 0 > num_workers > cpu_workers:
@@ -22,7 +22,7 @@ def get_bind():
 
 
 workers = get_num_workers()
-timeout = 30
+timeout = 10
 chdir = '/app'
 daemon = False
 pidfile = '/run/app/gunicorn.pid'
